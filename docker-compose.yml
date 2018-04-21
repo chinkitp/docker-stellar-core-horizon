@@ -1,13 +1,24 @@
 --- 
 version: '3.4'
 services:
-  db:
-    build: 
-      context: ./db
+  # db:
+  #   build: 
+  #     context: ./db
+  #   environment:
+  #     - POSTGRES_PASSWORD=mypass123
+  #   ports: 
+  #     - 9999:5432
+
+  stellar-db:
+    build:
+     context: ./stellar-db
+    image: chinkitp/stellar:latest
+    volumes: 
+    - "./data:/opt/stellar"
     environment:
       - POSTGRES_PASSWORD=mypass123
-    ports: 
-      - 9999:5432
+      - PGPASS=mypass123
+      - NETWORK=pubnet
 
   stellar:
     build:
@@ -20,4 +31,4 @@ services:
       - PGPASS=mypass123
       - NETWORK=pubnet
     depends_on:
-      - "db"
+      - "stellar-db"
