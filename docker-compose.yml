@@ -10,3 +10,4 @@ services:
     environment:
       - POSTGRES_PASSWORD=mypass123
       - PGPASS=mypass123
+      - NETWORK=pubnet
