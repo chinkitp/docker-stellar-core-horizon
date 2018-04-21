@@ -4,6 +4,9 @@ services:
   stellar:
     build:
      context: ./stellar 
-    image: "chinkitp/stellar"
+    image: chinkitp/stellar:latest
     volumes: 
-    - ./data:/opt/stellar
+    - "./data:/opt/stellar"
+    environment:
+      - POSTGRES_PASSWORD=mypass123
+      - PGPASS=mypass123
