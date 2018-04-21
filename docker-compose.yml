@@ -1,6 +1,10 @@
 --- 
 version: '3.4'
 services:
+  db:
+    build: 
+      context: ./db
+
   stellar:
     build:
      context: ./stellar 
@@ -11,3 +15,5 @@ services:
       - POSTGRES_PASSWORD=mypass123
       - PGPASS=mypass123
       - NETWORK=pubnet
+    depends_on:
+      - "db"
