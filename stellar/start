@@ -1,6 +1,8 @@
 #! /usr/bin/env bash
 set -e
 
+sleep 20;
+
 export STELLAR_HOME="/opt/stellar"
 export PGHOME="$STELLAR_HOME/postgresql"
 export SUPHOME="$STELLAR_HOME/supervisor"
@@ -190,7 +192,7 @@ function init_db() {
 
 	run_silent "init-postgres" sudo -u postgres $PGBIN/initdb -D $PGDATA
 
-	start_postgres
+	#start_postgres
 	run_silent "create-horizon-db" sudo -u postgres createdb horizon
 	run_silent "create-core-db" sudo -u postgres createdb core
 	run_silent "stellar-postgres-user" sudo -u postgres psql <<-SQL
@@ -213,7 +215,7 @@ function init_stellar_core() {
 	run_silent "chown-core" chown stellar:stellar .
 	run_silent "finalize-core-config" sed -ri "s/__PGPASS__/$PGPASS/g" etc/stellar-core.cfg
 
-	start_postgres
+	#start_postgres
 
 	run_silent "init-core-db" sudo -u stellar stellar-core --newdb --conf etc/stellar-core.cfg
 
@@ -239,7 +241,7 @@ function init_horizon() {
 		-e "s/__NETWORK__/$NETWORK_PASSPHRASE/g" \
 		etc/horizon.env
 
-	start_postgres
+	#start_postgres
 	run_silent "init-horizon-db" sudo -u stellar ./bin/horizon db init
 
 	touch .quickstart-initialized
