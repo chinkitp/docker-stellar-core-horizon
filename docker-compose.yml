@@ -4,6 +4,10 @@ services:
   db:
     build: 
       context: ./db
+    environment:
+      - POSTGRES_PASSWORD=mypass123
+    ports: 
+      - 9999:5432
 
   stellar:
     build:
