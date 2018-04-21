@@ -14,21 +14,21 @@ services:
      context: ./stellar-db
     image: chinkitp/stellar:latest
     volumes: 
-    - "./data:/opt/stellar"
+    - "./data-db:/opt/stellar"
     environment:
       - POSTGRES_PASSWORD=mypass123
       - PGPASS=mypass123
       - NETWORK=pubnet
 
-  stellar:
-    build:
-     context: ./stellar 
-    image: chinkitp/stellar:latest
-    volumes: 
-    - "./data:/opt/stellar"
-    environment:
-      - POSTGRES_PASSWORD=mypass123
-      - PGPASS=mypass123
-      - NETWORK=pubnet
-    depends_on:
-      - "stellar-db"
+  # stellar:
+  #   build:
+  #    context: ./stellar 
+  #   image: chinkitp/stellar:latest
+  #   volumes: 
+  #   - "./data:/opt/stellar"
+  #   environment:
+  #     - POSTGRES_PASSWORD=mypass123
+  #     - PGPASS=mypass123
+  #     - NETWORK=pubnet
+  #   depends_on:
+  #     - "stellar-db"

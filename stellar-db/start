@@ -27,8 +27,8 @@ function main() {
 
 	copy_defaults
 	init_db
-	init_stellar_core
-	init_horizon
+	#init_stellar_core
+	#init_horizon
 	copy_pgpass
 
 	stop_postgres  # this gets started in init_db
